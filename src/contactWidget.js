@@ -1,29 +1,35 @@
-const PHONE_NUMBER = ''
-const WHATSAPP_NUMBER = ''
-const TELEGRAM_NUMBER = ''
-const EMAIL_ADDRESS = ''
+const PHONE_NUMBER = '123456789'
+
+const WHATSAPP_COUNTRY_PREFIX = '34'
+const WHATSAPP_NUMBER = '123456789'
+const WHATSAPP_DEFAULT_MESSAGE = 'Hello!'
+
+const TELEGRAM_CHANNEL_NAME = '123456789'
+
+const EMAIL_ADDRESS = 'hello@reaccionestudio.com'
+
 const ICONS_HEIGHT = 80
 const CONTAINER_WIDTH = 80
 
 const CONTACT_METHODS = [
     {
         "name": "Phone call",
-        "href": "tel:610397312",
+        "href": "tel:" + PHONE_NUMBER ,
         "image": "./src/images/phone.png"
     },
     {
         "name": "Whatsapp",
-        "href": "tel:610397312",
+        "href": "https://wa.me/" + WHATSAPP_COUNTRY_PREFIX + WHATSAPP_NUMBER + '?text=' + WHATSAPP_DEFAULT_MESSAGE,
         "image": "./src/images/whatsapp.png"
     },
     {
         "name": "Telegram",
-        "href": "tel:610397312",
+        "href": "https://telegram.me/" + TELEGRAM_CHANNEL_NAME,
         "image": "./src/images/telegram.png"
     },
     {
         "name": "Email",
-        "href": "mailto:info@info.com",
+        "href": "mailto:" + EMAIL_ADDRESS,
         "image": "./src/images/email.png"
     },
 ]
@@ -78,10 +84,6 @@ const html = styles +
     </a>
     </div>`
 
-window.onload = function () {
-    document.body.innerHTML += html
-}
-
 function showContactMethods() {
     const chatContainer = document.getElementById('chat-container')
 
@@ -90,5 +92,8 @@ function showContactMethods() {
     } else {
         chatContainer.classList.add('chat-hidden')
     }
-    console.log('click')
+}
+
+window.onload = function () {
+    document.body.innerHTML += html
 }
