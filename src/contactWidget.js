@@ -32,7 +32,8 @@ let contactMethodsHtml = ''
 
 CONTACT_METHODS.reverse().map(contactMethod => {
     contactMethodsHtml += `
-        <a href="${contactMethod.href}" title="${contactMethod.name}">
+        <a href="${contactMethod.href}" title="${contactMethod.name}" class="tooltip">
+            <span class="tooltiptext">${contactMethod.name}</span>
             <img src="${contactMethod.image}" title="${contactMethod.name}" alt="${contactMethod.name}" style="height:${ICONS_HEIGHT}px" />
         </a>`
 })
@@ -42,6 +43,28 @@ const styles = `
         .chat-hidden{display:none;}
         div#chat-container{ width:${CONTAINER_WIDTH}px; }
         div#chat-container a {margin-bottom: 15px;display:block; }
+        .tooltip {
+          position: relative;
+          display: inline-block;
+        }
+        .tooltip .tooltiptext {
+          font-family: sans-serif;
+          font-weight: bold;
+          visibility: hidden;
+          width: 120px;
+          background-color: black;
+          color: #fff;
+          text-align: center;
+          padding: 5px 0;
+          border-radius:3px;
+          position: absolute;
+          z-index: 1;
+          right: 95px;
+          top: 29px;
+        }
+        .tooltip:hover .tooltiptext {
+          visibility: visible;
+        }
     </style>`
 
 const html = styles +
@@ -49,8 +72,9 @@ const html = styles +
         <div id="chat-container" class="chat-hidden">
         ${contactMethodsHtml}
     </div>
-    <a href="javascript:void(0);" onclick="showContactMethods()">
-        <img title="Contact with us" alt="Contat with us" src="./src/images/contact.png" style="height:${ICONS_HEIGHT}px" />
+    <a href="javascript:void(0);" onclick="showContactMethods()" class="tooltip">
+        <span class="tooltiptext">Contact us</span>
+        <img title="Contact us" alt="Contat us" src="./src/images/contact.png" style="height:${ICONS_HEIGHT}px" />
     </a>
     </div>`
 
