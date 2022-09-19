@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "parcel": "^2.7.0"
+  },
+  "name" : "Simple Contact Widget",
+  "source" : "src/contactWidget.js",
+  "scripts" : {
+    "watch" : "parcel watch",
+    "build" : "parcel build"
+  }
+}
