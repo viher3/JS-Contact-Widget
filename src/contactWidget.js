@@ -10,6 +10,8 @@ const EMAIL_ADDRESS = 'hello@reaccionestudio.com'
 
 const ICONS_HEIGHT = 80
 const CONTAINER_WIDTH = 80
+const CONTACT_US_ICON_LABEL = 'Contact us'
+const CONTACT_US_CLOSE_LABEL = 'Close'
 
 const CONTACT_METHODS = [
     {
@@ -78,19 +80,25 @@ const html = styles +
         <div id="chat-container" class="chat-hidden">
         ${contactMethodsHtml}
     </div>
-    <a href="javascript:void(0);" onclick="showContactMethods()" class="tooltip">
-        <span class="tooltiptext">Contact us</span>
-        <img title="Contact us" alt="Contat us" src="./src/images/contact.png" style="height:${ICONS_HEIGHT}px" />
+    <a href="javascript:void(0);" onclick="toggleContactMethods()" class="tooltip">
+        <span id="main-icon-tooltip" class="tooltiptext">${CONTACT_US_ICON_LABEL}</span>
+        <img id="main-icon" title="${CONTACT_US_ICON_LABEL}" alt="${CONTACT_US_ICON_LABEL}" src="./src/images/contact.png" style="height:${ICONS_HEIGHT}px" />
     </a>
     </div>`
 
-function showContactMethods() {
+function toggleContactMethods() {
     const chatContainer = document.getElementById('chat-container')
+    const mainIcon = document.getElementById('main-icon')
+    const mainIconTooltip = document.getElementById('main-icon-tooltip')
 
     if (chatContainer.classList.contains('chat-hidden')) {
         chatContainer.classList.remove('chat-hidden')
+        mainIcon.setAttribute('src', './src/images/close.png')
+        mainIconTooltip.innerHTML = CONTACT_US_CLOSE_LABEL
     } else {
         chatContainer.classList.add('chat-hidden')
+        mainIcon.setAttribute('src', './src/images/contact.png')
+        mainIconTooltip.innerHTML = CONTACT_US_ICON_LABEL
     }
 }
 
