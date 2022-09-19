@@ -2,26 +2,68 @@ const PHONE_NUMBER = ''
 const WHATSAPP_NUMBER = ''
 const TELEGRAM_NUMBER = ''
 const EMAIL_ADDRESS = ''
+const ICONS_HEIGHT = 80
+const CONTAINER_WIDTH = 80
 
-const html = '<style>.chat-hidden{display:none}</style>' +
-    '<div style="position:fixed;bottom:50px;right:50px;">' +
-        '<a href="javascript:void(0);" onclick="showContactMethods()">' +
-            '<img title="Contact with us" src="./src/images/contact.png" style="height:90px" />' +
-        '</a>' +
-        '<div id="chat-container" class="chat-hidden">chat-hidden</div>' +
-    '</div>'
+const CONTACT_METHODS = [
+    {
+        "name": "Phone call",
+        "href": "tel:610397312",
+        "image": "./src/images/phone.png"
+    },
+    {
+        "name": "Whatsapp",
+        "href": "tel:610397312",
+        "image": "./src/images/whatsapp.png"
+    },
+    {
+        "name": "Telegram",
+        "href": "tel:610397312",
+        "image": "./src/images/telegram.png"
+    },
+    {
+        "name": "Email",
+        "href": "mailto:info@info.com",
+        "image": "./src/images/email.png"
+    },
+]
+
+let contactMethodsHtml = ''
+
+CONTACT_METHODS.reverse().map(contactMethod => {
+    contactMethodsHtml += `
+        <a href="${contactMethod.href}" title="${contactMethod.name}">
+            <img src="${contactMethod.image}" title="${contactMethod.name}" alt="${contactMethod.name}" style="height:${ICONS_HEIGHT}px" />
+        </a>`
+})
+
+const styles = `
+    <style>
+        .chat-hidden{display:none;}
+        div#chat-container{ width:${CONTAINER_WIDTH}px; }
+        div#chat-container a {margin-bottom: 15px;display:block; }
+    </style>`
+
+const html = styles +
+    `<div style="position:fixed;bottom:50px;right:50px;">
+        <div id="chat-container" class="chat-hidden">
+        ${contactMethodsHtml}
+    </div>
+    <a href="javascript:void(0);" onclick="showContactMethods()">
+        <img title="Contact with us" alt="Contat with us" src="./src/images/contact.png" style="height:${ICONS_HEIGHT}px" />
+    </a>
+    </div>`
 
 window.onload = function () {
     document.body.innerHTML += html
 }
 
-function showContactMethods()
-{
+function showContactMethods() {
     const chatContainer = document.getElementById('chat-container')
 
-    if(chatContainer.classList.contains('chat-hidden')){
+    if (chatContainer.classList.contains('chat-hidden')) {
         chatContainer.classList.remove('chat-hidden')
-    }else{
+    } else {
         chatContainer.classList.add('chat-hidden')
     }
     console.log('click')
